@@ -6,12 +6,12 @@ exports.config = {
     framework: 'custom',
     frameworkPath: require.resolve('protractor-cucumber-framework'),
     specs: [
-        './e2e/features/*.feature'
+        './features/*.feature'
     ],
     cucumberOpts: {
         compiler: "ts:ts-node/register",
-        require: './e2e/features/step_definitions/*.steps.ts',
-        tags: '~@Ignore and @Auto'
+        require: './features/step_definitions/*.steps.ts',
+        tags: '~@Ignore'
     },
     capabilities: {
         browserName: 'chrome',

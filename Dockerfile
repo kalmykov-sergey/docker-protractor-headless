@@ -1,4 +1,4 @@
-FROM node:6.9.4-slim
+FROM node:9.11.1-slim
 MAINTAINER kalmykov.sergei@gmail.com
 WORKDIR /tmp
 COPY webdriver-versions.js ./

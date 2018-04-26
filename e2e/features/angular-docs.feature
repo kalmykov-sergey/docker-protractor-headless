@@ -1,6 +1,5 @@
 # language: en
 
-@Smoke
 Feature: Check angular docs
 
     Scenario: Docs page should just work
