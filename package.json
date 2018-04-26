@@ -1,0 +1,17 @@
+{
+    "name": "angular-ts-e2e",
+    "version": "0.0.1",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "moment": "^2.18.1",
+        "@types/node": "~6.0.60",
+        "chai": "^4.1.2",
+        "cucumber": "^3.0.2",
+        "protractor": "5.1.2",
+        "protractor-cucumber-framework": "^4.0.7",
+        "rxjs": "^5.5.2",
+        "ts-node": "~3.3.0",
+        "typescript": "^2.5.3"
+    }
+}

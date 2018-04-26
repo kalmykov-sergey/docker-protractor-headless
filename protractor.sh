@@ -9,4 +9,8 @@ useradd -m -o -u $uid -g $gid protractor
 # Therefore, we need to run it as a regular user, taking care
 # to set the uid and gid of that user to match those of the current directory owner.
 # Otherwise protractor could experience problems reading files from the current directory.
-sudo -u protractor xvfb-run --server-args="-screen 0 ${SCREEN_RES}" -a protractor $@
+if [ "PROTRACTOR_HOST" == "" ]; then
+    echo "env variable PROTRACTOR_HOST is not defined!"
+    exit -1
+fi
+sudo -u protractor xvfb-run --server-args="-screen 0 ${SCREEN_RES}" -a protractor --baseUrl="${PROTRACTOR_HOST}" $@

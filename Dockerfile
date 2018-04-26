@@ -1,11 +1,11 @@
 FROM node:6.9.4-slim
-MAINTAINER j.ciolek@webnicer.com
+MAINTAINER kalmykov.sergei@gmail.com
 WORKDIR /tmp
 COPY webdriver-versions.js ./
-ENV CHROME_PACKAGE="google-chrome-stable_59.0.3071.115-1_amd64.deb" NODE_PATH=/usr/local/lib/node_modules:/protractor/node_modules
-RUN npm install -g protractor@4.0.14 minimist@1.2.0 && \
+ENV CHROME_PACKAGE="google-chrome-stable_61.0.3163.91-1_amd64.deb" NODE_PATH=/usr/local/lib/node_modules:/protractor/node_modules
+RUN npm install -g protractor@5.1.2 minimist@1.2.0 && \
     node ./webdriver-versions.js --chromedriver 2.32 && \
-    webdriver-manager update && \
+    webdriver-manager update --versions.chrome 2.32 && \
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
     apt-get update && \
     apt-get install -y xvfb wget sudo && \
@@ -22,5 +22,13 @@ COPY environment /etc/sudoers.d/
 # Fix for the issue with Selenium, as described here:
 # https://github.com/SeleniumHQ/docker-selenium/issues/87
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null SCREEN_RES=1280x1024x24
+ENV PROTRACTOR_HOST=""
+
+COPY package.json /protractor
 WORKDIR /protractor
+RUN npm install
+
+COPY protractor.conf.js /protractor
+COPY tsconfig.json /protractor
+
 ENTRYPOINT ["/protractor.sh"]

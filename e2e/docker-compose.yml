@@ -1,0 +1,10 @@
+version: '3.2'
+services:
+  protractor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    shm_size: 128M
+    environment:
+      PROTRACTOR_HOST: "${HOST}"
